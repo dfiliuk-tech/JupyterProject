@@ -1,13 +1,23 @@
 from scipy import constants
+
 variant_number = 7
 G_max = 500 + pow(-1, variant_number) * 5 * variant_number
 
 G_min = (2 * G_max) / 3
 
 n_y_max = 2.1 + 10900 / (G_max + 4536)
-n_y_min = -0.4*n_y_max
+n_y_min = -0.4 * n_y_max
+
+
 
 S_kr = 4 + pow(-1, variant_number) * 0.02 * variant_number  # площа крила
+
+# розрахунки
+# c_y приймаємо як 1/5 від c_y_max
+# з таблиці/графіка бачимо що c_y_max ≈ 1.5
+# для крейсерської швидкості
+cy_cruise = 0.3
+
 
 alpha_cy = {
     -4: -0.31,
@@ -130,7 +140,6 @@ msa = {
     }
 }
 
-
 # Input parameters
 g = constants.g  # м/с²
 H = 0  # висота польоту, м
@@ -138,9 +147,3 @@ H = 0  # висота польоту, м
 # З таблиці МСА беремо щільність на H=0
 rho_0 = msa[H]["density"]  # 1.225 кг/м³
 sound_speed = msa[0]["sound_speed"]  # 340 м/с
-
-#розрахунки
-# c_y приймаємо як 1/5 від c_y_max
-# з таблиці/графіка бачимо що c_y_max ≈ 1.5
- # для крейсерської швидкості
-cy_cruise = 0.3
